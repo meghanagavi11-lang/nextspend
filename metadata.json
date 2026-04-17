@@ -1,0 +1,6 @@
+{
+  "name": "Family Finance Manager",
+  "description": "Centralize family financial data, reduce decision fatigue with AI-driven Next Actions, and enable seamless collaboration between family members.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}

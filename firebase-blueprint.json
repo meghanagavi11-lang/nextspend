@@ -1,0 +1,147 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and financial health data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "healthScore": { "type": "number" },
+        "currency": { "type": "string", "default": "INR" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Individual spending record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "isImpulsive": { "type": "boolean" },
+        "emotion": { "type": "string" },
+        "groupId": { "type": "string" }
+      },
+      "required": ["uid", "amount", "category", "date"]
+    },
+    "Goal": {
+      "title": "Goal",
+      "description": "Savings goal",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "title": { "type": "string" },
+        "targetAmount": { "type": "number" },
+        "currentAmount": { "type": "number" },
+        "deadline": { "type": "string", "format": "date-time" },
+        "isLocked": { "type": "boolean" },
+        "icon": { "type": "string" }
+      },
+      "required": ["uid", "title", "targetAmount"]
+    },
+    "Subscription": {
+      "title": "Subscription",
+      "description": "Recurring payment",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "amount": { "type": "number" },
+        "frequency": { "type": "string", "enum": ["monthly", "yearly"] },
+        "lastUsed": { "type": "string", "format": "date-time" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["uid", "name", "amount"]
+    },
+    "FamilyGroup": {
+      "title": "FamilyGroup",
+      "description": "Collaborative family finance group",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "memberUids": { "type": "array", "items": { "type": "string" } },
+        "members": { 
+          "type": "array", 
+          "items": { 
+            "type": "object",
+            "properties": {
+              "uid": { "type": "string" },
+              "role": { "type": "string", "enum": ["admin", "member", "viewer"] }
+            }
+          }
+        },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "members"]
+    },
+    "Bill": {
+      "title": "Bill",
+      "description": "Recurring utility or service bill",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "amount": { "type": "number" },
+        "dueDate": { "type": "string", "format": "date-time" },
+        "isPaid": { "type": "boolean" },
+        "category": { "type": "string" },
+        "groupId": { "type": "string" }
+      },
+      "required": ["uid", "name", "amount", "dueDate"]
+    },
+    "Investment": {
+      "title": "Investment",
+      "description": "Asset holding tracking",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["stock", "bond", "crypto", "real-estate", "other"] },
+        "quantity": { "type": "number" },
+        "costBasis": { "type": "number" },
+        "currentPrice": { "type": "number" },
+        "purchaseDate": { "type": "string", "format": "date-time" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "type", "quantity", "costBasis"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile document"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Individual expense documents"
+    },
+    "/goals/{goalId}": {
+      "schema": "Goal",
+      "description": "Savings goal documents"
+    },
+    "/subscriptions/{subId}": {
+      "schema": "Subscription",
+      "description": "Subscription tracking documents"
+    },
+    "/bills/{billId}": {
+      "schema": "Bill",
+      "description": "Bill tracking documents"
+    },
+    "/familyGroups/{groupId}": {
+      "schema": "FamilyGroup",
+      "description": "Collaborative family group documents"
+    },
+    "/investments/{investmentId}": {
+      "schema": "Investment",
+      "description": "Investment holding documents"
+    }
+  }
+}

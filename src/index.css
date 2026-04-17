@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Helvetica Neue", "Inter", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: #050507;
+  --color-surface: #121216;
+  --color-accent: #00FF88;
+  --color-danger: #FF4D4D;
+  --color-text-p: #FFFFFF;
+  --color-text-s: #8E9299;
+  --color-glass: rgba(255, 255, 255, 0.03);
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text-p antialiased font-sans;
+  }
+
+  h1, h2, h3 {
+    @apply font-display font-extrabold uppercase tracking-[-0.04em];
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-glass rounded-[24px] p-6 transition-all duration-300;
+  }
+
+  .card-label {
+    @apply text-[11px] uppercase tracking-[1px] text-text-s mb-3 font-semibold;
+  }
+
+  .stat-value {
+    @apply text-[44px] font-bold tracking-[-0.04em] leading-none;
+  }
+
+  .stat-sub {
+    @apply text-sm text-text-s mt-2;
+  }
+
+  .pill {
+    @apply px-5 py-2.5 rounded-full bg-glass text-sm font-medium transition-all cursor-pointer hover:bg-white/10;
+  }
+
+  .pill-active {
+    @apply bg-white text-black hover:bg-white/90;
+  }
+
+  .massive-title {
+    @apply text-[88px] leading-[0.85] font-extrabold tracking-[-0.04em] uppercase;
+  }
+
+  .hero-title {
+    @apply text-[64px] md:text-[88px] leading-[0.85] font-extrabold tracking-[-0.04em] uppercase;
+  }
+
+  .health-orb-container {
+    @apply relative flex items-center justify-center w-full h-full min-h-[280px];
+  }
+
+  .orb-ring {
+    @apply w-[220px] h-[220px] rounded-full border-2 border-glass flex items-center justify-center relative;
+  }
+
+  .orb-glow {
+    @apply absolute w-[140px] h-[140px] bg-accent rounded-full blur-[60px] opacity-20;
+  }
+
+  .orb-value {
+    @apply text-[80px] font-extrabold tracking-[-0.04em] text-accent;
+  }
+
+  .offline-tag {
+    @apply text-[11px] font-semibold uppercase text-text-s border border-text-s/40 px-2.5 py-1 rounded-full opacity-60;
+  }
+}
+
+
